@@ -2,3 +2,70 @@
     margin: 0;
     padding: 0;
 }
+body {
+	background-color: black;
+	color: white;
+	grid-template-areas: 	'header'
+							'main'
+							'footer';
+}
+header {
+	grid-area: header;
+}
+header h1 {
+	font-family: "Abibas";
+}
+header h1 {
+	font-family: "Cheque";
+}
+main {
+	grid-area: main;
+}
+footer {
+	grid-area: footer;
+}
+ul {
+    list-style-type: none;
+}
+nav li {
+    display: inline;
+}
+nav li a {
+    font-family: "Cheque";
+}
+a {
+	text-decoration: none;
+	color: white;
+}
+button {
+	background-color: #f6b22a;
+	padding: 10px 30px;
+	text-decoration: none;
+	border-radius: 20px;
+	border: none;
+}
+.container {
+	display: grid;
+	grid-template-columns: 70% 30%;
+	gap: 20px;
+}
+.galleryMenu {
+	display: grid;
+	grid-template-columns: auto auto auto auto;
+	gap: 20px;
+	height: 350px;
+}
+.plato {
+	background-color: #272b34;
+	text-align: center;
+}
+.plato h3 {
+	font-family: "League Gothic";
+}
+.plato li {
+	font-family: "Arial";
+}
+aside {
+	background-color: #272b34;
+	border-radius: 30px;
+}

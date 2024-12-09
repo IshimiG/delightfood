@@ -1,0 +1,43 @@
+Mesa = id_mesa + qr + n_comensales + ubicacion + NSS
+	CP(id_mesa)
+	C.Aj: NSS -> Camarero(NSS)
+
+Pedido = id_pedido + precio_total + fecha_pedido + id_mesa
+	CP(id_pedido)
+	C.Aj: id_mesa -> Mesa(id_mesa)
+
+Plato = id_plato + nombre + tiempo_espera + precio + categoria
+	CP(id_plato)
+
+Ingrediente = id_ingrediente + nombre + cantidad_almacenada
+	CP(id_ingrediente)
+
+Tiene = id_plato + id_ingrediente + cantidad
+	CP(id_plato, id_ingrediente)
+	C.Aj: id_plato -> Plato(id_plato)
+	C.Aj: id_ingrediente -> Ingrediente(id_ingrediente)
+
+Empleado = NSS + nombre + apellido1 + apellido2 + dni
+	CP(NSS)
+
+Camarero = NSS
+	CP(NSS)
+	C.Aj: NSS -> Empleado(NSS)
+
+Pinche = NSS + cocinero
+	CP(NSS)
+	C.Aj: NSS -> Empleado(NSS)
+	C.Aj: cocinero -> Cocinero(NSS)
+
+Cocinero= NSS
+	CP(NSS)
+	C.Aj: NSS -> Empleado(NSS)
+
+Cocina = id_plato + NSS
+	CP(id_plato, NSS)
+	C.Aj: id_plato -> Plato(id_plato)
+	C.Aj: NSS -> Cocinero(NSS)
+
+1 FN. Sí porque no hay atributos compuestos ni multievaluados
+2 FN. Sí porque no hay atributos no clave que no dependan de forma completa de la CP
+3 FN. Sí porque no hay ninguna dependencia funcional (ningún atributo no clave depende de otro atributo no clave)

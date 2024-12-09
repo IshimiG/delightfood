@@ -17,6 +17,10 @@ Pedido = ID_Pedido + Fecha_Pedido + Hora_Pedido + ID_Mesa
 PK (ID_Pedido)  
 FK (ID_Mesa) -> Mesa(ID_Mesa)
 
+Precio_Pedido = ID_Plato + Dia_Semana + Momento_Dia + Incremento
+PK (ID_Pedido, Dia_Semana, Momento_Dia)
+FK (ID_Plato -> Plato(ID_Plato))
+
     Ahora Pedido si cumple 1FN ya que no hay redundancias y el precio total se puede calcular haciando un metodo que sume el valor de los platos 
     fuera de la base de datos. 
     
@@ -46,10 +50,6 @@ FK (ID_Categoria -> Categoria(ID_Categoria))
 
     Con la tabla Plato_Categoria introducimos una tabla que haga de intermediario con plato y almacene multiples categorias. Asi hacemos que cumpla
     la primera forma normal
-
-Precio_Plato = ID_Plato + Dia_Semana + Momento_Dia + Incremento
-PK (ID_Pedido, Dia_Semana, Momento_Dia)
-FK (ID_Plato -> Plato(ID_Plato))
 
     Con la tabla Precio_Plato añadimos Dia_Semana y Momento_Dia para almacenar las fluctuaciones de precio que tienen los platos.
     ---Dubitativo--- Debido a que añadimos Hora_Pedido
@@ -91,30 +91,20 @@ FK (rol) -> Cocinero(NSS)
 Mesa = ID_Mesa +  Nº_Comensales + QR + Ubicación  
 PK (ID_Mesa)
 
-Pedido = ID_Pedido + Fecha_Pedido + Hora_Pedido + ID_Mesa
+Pedido = ID_Pedido + Fecha_Pedido + Hora_Pedido + ID_Mesa + precio
 PK (ID_Pedido)  
 FK (ID_Mesa) -> Mesa(ID_Mesa)
 
 Plato = ID_Plato + Nombre + Tiempo_Espera + Precio
 PK = (ID_Plato)
+FK = (ID_Categoria -> Categoria(ID_Categoria))
 
 Categoría = ID_Categoria + Nombre
 PK = (ID_Categoria)
 
-Plato_Categoria = ID_Plato + ID_Categoria
-PK (ID_Plato, ID_Categoria)
-FK (ID_Plato -> Plato(ID_Plato))
-FK (ID_Categoria -> Categoria(ID_Categoria))
-
-Precio_Plato = ID_Plato + Dia_Semana + Momento_Dia + Incremento
-PK (ID_Pedido, Dia_Semana, Momento_Dia)
-FK (ID_Plato -> Plato(ID_Plato))
-
-Precio_Base = ID_Plato + Precio_Base
-PK (ID_Plato)
-
 Ingrediente = ID_Ingrediente + Nombre + Cantidad_Almacenada  
 PK (ID_Ingrediente)
+
 
 Cocinero = NSS   
 PK = NSS  

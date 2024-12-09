@@ -35,7 +35,7 @@ CP (ID\_Pedido)
 CAj (ID\_Mesa) \-\> Mesa(ID\_Mesa)
 
 Plato \= ID\_Plato \+ Nombre \+ Tiempo\_Espera \+ Precio \+ Categoría  
-CP (ID\_Plato)  
+CP (ID\_Plato)  s
 CAj (ID\_Pedido) \-\> Pedido(ID\_Pedido)
 
 Ingrediente \= ID\_Ingrediente \+ Nombre \+ Cantidad\_Almacenada  

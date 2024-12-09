@@ -121,6 +121,6 @@ CREATE TABLE Cocina (
 INSERT INTO Cocina (DNI_Empleado, ID_Plato) 
 VALUES ('45904019K', 1);
 
-SELECT * FROM Mesa , 
+SELECT * FROM Mesa; 
 SELECT * FROM Pedido;
 SELECT * FROM Plato;

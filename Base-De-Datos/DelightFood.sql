@@ -11,6 +11,9 @@ CREATE TABLE Mesa (
     Ubicacion VARCHAR(20)
 );
 
+INSERT INTO Mesa (ID_Mesa, QR, Numero_Comensales, Ubicacion) 
+VALUES (1, '234513252345645748', 4, 'Terraza');
+
 
 CREATE TABLE Empleado (
     DNI VARCHAR(9) PRIMARY KEY,
@@ -20,11 +23,17 @@ CREATE TABLE Empleado (
     NSS VARCHAR(12) NOT NULL UNIQUE
 );
 
+INSERT INTO Empleado (DNI, Nombre, Apellido1, Apellido2, NSS) 
+VALUES ('45904019K', 'Limoncio', 'Inaceptable', NULL, '10293829184');
+
 
 CREATE TABLE Camarero (
     DNI VARCHAR(9) PRIMARY KEY,
     FOREIGN KEY (DNI) REFERENCES Empleado(DNI)
 );
+
+INSERT INTO Camarero (DNI)
+VALUES ('45904019K');
 
 
 CREATE TABLE Pinche (
@@ -32,12 +41,17 @@ CREATE TABLE Pinche (
     FOREIGN KEY (DNI) REFERENCES Empleado(DNI)
 );
 
+INSERT INTO Pinche (DNI)
+VALUES ('38201938475');
+
 
 CREATE TABLE Cocinero (
     DNI VARCHAR(9) PRIMARY KEY,
     FOREIGN KEY (DNI) REFERENCES Empleado(DNI)
 );
 
+INSERT INTO Cocinero (DNI)
+VALUES ('45904019K');
 
 CREATE TABLE Esta_a_cargo (
     Cocinero_DNI VARCHAR(9),
@@ -46,6 +60,9 @@ CREATE TABLE Esta_a_cargo (
     FOREIGN KEY (Cocinero_DNI) REFERENCES Cocinero(DNI),
     FOREIGN KEY (Pinche_DNI) REFERENCES Pinche(DNI)
 );
+
+INSERT INTO Esta_a_cargo (Cocinero_DNI, Pinche_DNI) 
+VALUES ('45904019K', '38201938475');
 
 
 CREATE TABLE Pedido (
@@ -56,41 +73,21 @@ CREATE TABLE Pedido (
     FOREIGN KEY (ID_Mesa) REFERENCES Mesa(ID_Mesa)
 );
 
+INSERT INTO Pedido (ID_Pedido, Fecha_Pedido, Precio_Total, ID_Mesa) 
+VALUES (23, '2024-12-10', 10.50, 1);
 
 CREATE TABLE Plato (
-    ID_Plato INT AUTO_INCREMENT PRIMARY KEY,
-    Nombre VARCHAR(20) NOT NULL,
+    ID_Plato INT PRIMARY KEY,
+    Nombre VARCHAR(10) NOT NULL,
     Tiempo_Espera INT NOT NULL,
-    Precio DECIMAL(10, 2) NOT NULL
+    Precio DECIMAL(10, 2) NOT NULL,
+    Categoria VARCHAR(10) NOT NULL,
+    ID_Pedido INT NOT NULL,
+    FOREIGN KEY (ID_Pedido) REFERENCES Pedido(ID_Pedido)
 );
 
-CREATE TABLE Categoria (
-    ID_Categoria INT AUTO_INCREMENT PRIMARY KEY,
-    Nombre VARCHAR(20) NOT NULL
-);
-
-CREATE TABLE Plato_Categoria (
-    ID_Plato INT NOT NULL,
-    ID_Categoria INT NOT NULL,
-    PRIMARY KEY (ID_Plato, ID_Categoria),
-    FOREIGN KEY (ID_Plato) REFERENCES Plato(ID_Plato),
-    FOREIGN KEY (ID_Categoria) REFERENCES Categoria(ID_Categoria)
-);
-
-CREATE TABLE Precio_Plato (
-    ID_Plato INT NOT NULL,
-    Dia_Semana ENUM('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo') NOT NULL,
-    Momento_Dia ENUM('Comida', 'Cena') NOT NULL,
-    Incremento DECIMAL(5, 2) NOT NULL,
-    PRIMARY KEY (ID_Plato, Dia_Semana, Momento_Dia),
-    FOREIGN KEY (ID_Plato) REFERENCES Plato(ID_Plato)
-);
-
-CREATE TABLE Precio_Base (
-    ID_Plato INT NOT NULL PRIMARY KEY,
-    Precio_Base DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (ID_Plato) REFERENCES Plato(ID_Plato)
-);
+INSERT INTO Plato (ID_Plato, Nombre, Tiempo_Espera, Precio, Categoria, ID_Pedido) 
+VALUES (1, 'Sushi', 10, 4.20, 'Sushi', 23);
 
 CREATE TABLE Ingrediente (
     ID_Ingrediente INT PRIMARY KEY,
@@ -98,6 +95,8 @@ CREATE TABLE Ingrediente (
     Cantidad_Almacenada DECIMAL(10, 2) NOT NULL
 );
 
+INSERT INTO Ingrediente (ID_Ingrediente, Nombre, Cantidad_Almacenada) 
+VALUES (1, 'Pepino', 64.00);
 
 CREATE TABLE Tiene (
     ID_Plato INT,
@@ -108,6 +107,8 @@ CREATE TABLE Tiene (
     FOREIGN KEY (ID_Ingrediente) REFERENCES Ingrediente(ID_Ingrediente)
 );
 
+INSERT INTO Tiene (ID_Plato, ID_Ingrediente, Cantidad) 
+VALUES (1, 1, 1.00);
 
 CREATE TABLE Cocina (
     DNI_Empleado VARCHAR(9),
@@ -116,3 +117,10 @@ CREATE TABLE Cocina (
     FOREIGN KEY (DNI_Empleado) REFERENCES Empleado(DNI),
     FOREIGN KEY (ID_Plato) REFERENCES Plato(ID_Plato)
 );
+
+INSERT INTO Cocina (DNI_Empleado, ID_Plato) 
+VALUES ('45904019K', 1);
+
+SELECT * FROM Mesa , 
+SELECT * FROM Pedido;
+SELECT * FROM Plato;

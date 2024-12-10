@@ -6,8 +6,9 @@ Pedido = id_pedido + precio_total + fecha_pedido + id_mesa
 	CP(id_pedido)
 	C.Aj: id_mesa -> Mesa(id_mesa)
 
-Plato = id_plato + nombre + tiempo_espera + precio + categoria
+Plato = id_plato + nombre + tiempo_espera + precio + categoria + id_pedido
 	CP(id_plato)
+	C.Aj: id_pedido -> Pedido(id_pedido)
 
 Ingrediente = id_ingrediente + nombre + cantidad_almacenada
 	CP(id_ingrediente)

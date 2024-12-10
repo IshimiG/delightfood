@@ -1,177 +1,124 @@
-drop database if exists DelightFood;
 
-create database DelightFood;
+DROP DATABASE IF EXISTS DelightFood;
+CREATE DATABASE DelightFood;
+USE DelightFood;
 
-use DelightFood;
-
-CREATE TABLE Mesa (
-    ID_Mesa INT PRIMARY KEY,
-    QR VARCHAR(255),
-    Numero_Comensales INT NOT NULL,
-    Ubicacion VARCHAR(20)
+CREATE TABLE empleado (
+    nss CHAR(9) PRIMARY KEY,
+    nombre VARCHAR(20) NOT NULL,
+    apellido1 VARCHAR(20) NOT NULL,
+    apellido2 VARCHAR(20) NOT NULL,
+    dni CHAR(9) NOT NULL UNIQUE
 );
 
 
-CREATE TABLE Empleado (
-    DNI VARCHAR(9) PRIMARY KEY,
-    Nombre VARCHAR(10) NOT NULL,
-    Apellido1 VARCHAR(10) NOT NULL,
-    Apellido2 VARCHAR(10),
-    NSS VARCHAR(12) NOT NULL UNIQUE
+INSERT INTO empleado (nss, nombre, apellido1, apellido2, dni) VALUES
+('781256721', 'Manolo', 'Castillo', 'Cosio', '62147895B'),
+('621804593', 'Juan', 'Pérez', 'García', '78945612C'),
+('531068791', 'Ana', 'López', 'Martínez', '45678912D'),
+('217841829', 'Pedro', 'Sánchez', 'Rodríguez', '32165498E');
+
+
+CREATE TABLE camarero (
+    nss CHAR(9) PRIMARY KEY,
+    FOREIGN KEY (nss) REFERENCES empleado(nss)
 );
 
 
-CREATE TABLE Camarero (
-    DNI VARCHAR(9) PRIMARY KEY,
-    FOREIGN KEY (DNI) REFERENCES Empleado(DNI)
-);
+INSERT INTO camarero (nss) VALUES ('781256721'), ('531068791');
 
-CREATE TABLE Pinche (
-    DNI VARCHAR(9) PRIMARY KEY,
-    FOREIGN KEY (DNI) REFERENCES Empleado(DNI)
-);
 
-CREATE TABLE Cocinero (
-    DNI VARCHAR(9) PRIMARY KEY,
-    FOREIGN KEY (DNI) REFERENCES Empleado(DNI)
-);
-
-CREATE TABLE Esta_a_cargo (
-    Cocinero_DNI VARCHAR(9),
-    Pinche_DNI VARCHAR(9),
-    PRIMARY KEY (Cocinero_DNI, Pinche_DNI),
-    FOREIGN KEY (Cocinero_DNI) REFERENCES Cocinero(DNI),
-    FOREIGN KEY (Pinche_DNI) REFERENCES Pinche(DNI)
-);
-
-CREATE TABLE Pedido (
-    ID_Pedido INT PRIMARY KEY,
-    Fecha_Pedido DATE NOT NULL,
-    Precio_Total DECIMAL(10, 2) NOT NULL,
-    ID_Mesa INT NOT NULL,
-    FOREIGN KEY (ID_Mesa) REFERENCES Mesa(ID_Mesa)
-);
-
-CREATE TABLE Plato (
-    ID_Plato INT PRIMARY KEY,
-    Nombre VARCHAR(10) NOT NULL,
-    Tiempo_Espera INT NOT NULL,
-    Precio DECIMAL(10, 2) NOT NULL,
-    Categoria VARCHAR(10) NOT NULL,
-    ID_Pedido INT NOT NULL,
-    FOREIGN KEY (ID_Pedido) REFERENCES Pedido(ID_Pedido)
+CREATE TABLE cocinero (
+    nss CHAR(9) PRIMARY KEY,
+    FOREIGN KEY (nss) REFERENCES empleado(nss)
 );
 
 
-CREATE TABLE Ingrediente (
-    ID_Ingrediente INT PRIMARY KEY,
-    Nombre VARCHAR(10) NOT NULL,
-    Cantidad_Almacenada DECIMAL(10, 2) NOT NULL
+INSERT INTO cocinero (nss) VALUES ('621804593'), ('217841829');
+
+
+CREATE TABLE pinche (
+    nss CHAR(9),
+    cocinero CHAR(9),
+    PRIMARY KEY (nss, cocinero),
+    FOREIGN KEY (nss) REFERENCES empleado(nss),
+    FOREIGN KEY (cocinero) REFERENCES cocinero(nss)
 );
 
-CREATE TABLE Tiene (
-    ID_Plato INT,
-    ID_Ingrediente INT,
-    Cantidad DECIMAL(10, 2) NOT NULL,
-    PRIMARY KEY (ID_Plato, ID_Ingrediente),
-    FOREIGN KEY (ID_Plato) REFERENCES Plato(ID_Plato),
-    FOREIGN KEY (ID_Ingrediente) REFERENCES Ingrediente(ID_Ingrediente)
+
+INSERT INTO pinche (nss, cocinero) VALUES ('781256721', '621804593');
+
+
+CREATE TABLE mesa (
+    id_mesa INT PRIMARY KEY AUTO_INCREMENT,
+    qr CHAR(30) NOT NULL,
+    n_comensales INT NOT NULL,
+    ubicacion VARCHAR(30) NOT NULL,
+    nss CHAR(9) NOT NULL,
+    FOREIGN KEY(nss) REFERENCES camarero(nss)
 );
 
-CREATE TABLE Cocina (
-    DNI_Empleado VARCHAR(9),
-    ID_Plato INT,
-    PRIMARY KEY (DNI_Empleado, ID_Plato),
-    FOREIGN KEY (DNI_Empleado) REFERENCES Empleado(DNI),
-    FOREIGN KEY (ID_Plato) REFERENCES Plato(ID_Plato)
+
+INSERT INTO mesa (qr, n_comensales, ubicacion, nss) 
+VALUES ('56721952162', 3, 'Terraza', '531068791');
+
+CREATE TABLE pedido (
+    id_pedido INT PRIMARY KEY AUTO_INCREMENT,
+    precio_total DOUBLE NOT NULL,
+    fecha_pedido DATE NOT NULL,
+    id_mesa INT NOT NULL,
+    FOREIGN KEY (id_mesa) REFERENCES mesa(id_mesa)
 );
 
-drop database if exists DelightFood;
 
-create database DelightFood;
+INSERT INTO pedido (precio_total, fecha_pedido, id_mesa) 
+VALUES (20.00, '2025-01-10', 1);
 
-use DelightFood;
 
-CREATE TABLE Mesa (
-    ID_Mesa INT PRIMARY KEY,
-    QR VARCHAR(255),
-    Numero_Comensales INT NOT NULL,
-    Ubicacion VARCHAR(20)
+CREATE TABLE plato (
+    id_plato INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(20) NOT NULL,
+    tiempo_espera INT NOT NULL,
+    precio DOUBLE NOT NULL,
+    categoria VARCHAR(20),
+    id_pedido INT NOT NULL,
+    FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
 );
 
-CREATE TABLE Empleado (
-    DNI VARCHAR(9) PRIMARY KEY,
-    Nombre VARCHAR(10) NOT NULL,
-    Apellido1 VARCHAR(10) NOT NULL,
-    Apellido2 VARCHAR(10),
-    NSS VARCHAR(12) NOT NULL UNIQUE
+INSERT INTO plato (nombre, tiempo_espera, precio, categoria, id_pedido) 
+VALUES ('Sushi', 30, 20.00, 'Nigiri', 1);
+
+
+CREATE TABLE ingrediente (
+    id_ingrediente INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(20) NOT NULL,
+    cantidad_almacenada INT NOT NULL
 );
 
-CREATE TABLE Camarero (
-    DNI VARCHAR(9) PRIMARY KEY,
-    FOREIGN KEY (DNI) REFERENCES Empleado(DNI)
+
+INSERT INTO ingrediente (nombre, cantidad_almacenada) 
+VALUES ('Salmón', 3), ('Arroz', 10);
+
+
+CREATE TABLE tiene (
+    id_ingrediente INT,
+    id_plato INT,
+    PRIMARY KEY (id_ingrediente, id_plato),
+    FOREIGN KEY (id_plato) REFERENCES plato(id_plato),
+    FOREIGN KEY (id_ingrediente) REFERENCES ingrediente(id_ingrediente)
 );
 
-CREATE TABLE Pinche (
-    DNI VARCHAR(9) PRIMARY KEY,
-    FOREIGN KEY (DNI) REFERENCES Empleado(DNI)
+
+INSERT INTO tiene (id_ingrediente, id_plato) 
+VALUES (1, 1), (2, 1);
+
+CREATE TABLE cocina (
+     id_plato INT,
+     nss CHAR(9),
+     PRIMARY KEY (id_plato, nss),
+     FOREIGN KEY (id_plato) REFERENCES plato(id_plato),
+     FOREIGN KEY (nss) REFERENCES cocinero(nss)
 );
 
-CREATE TABLE Cocinero (
-    DNI VARCHAR(9) PRIMARY KEY,
-    FOREIGN KEY (DNI) REFERENCES Empleado(DNI)
-);
-
-CREATE TABLE Esta_a_cargo (
-    Cocinero_DNI VARCHAR(9),
-    Pinche_DNI VARCHAR(9),
-    PRIMARY KEY (Cocinero_DNI, Pinche_DNI),
-    FOREIGN KEY (Cocinero_DNI) REFERENCES Cocinero(DNI),
-    FOREIGN KEY (Pinche_DNI) REFERENCES Pinche(DNI)
-);
-
-CREATE TABLE Pedido (
-    ID_Pedido INT PRIMARY KEY,
-    Fecha_Pedido DATE NOT NULL,
-    Precio_Total DECIMAL(10, 2) NOT NULL,
-    ID_Mesa INT NOT NULL,
-    FOREIGN KEY (ID_Mesa) REFERENCES Mesa(ID_Mesa)
-);
-
-CREATE TABLE Plato (
-    ID_Plato INT PRIMARY KEY,
-    Nombre VARCHAR(10) NOT NULL,
-    Tiempo_Espera INT NOT NULL,
-    Precio DECIMAL(10, 2) NOT NULL,
-    Categoria VARCHAR(10) NOT NULL,
-    ID_Pedido INT NOT NULL,
-    FOREIGN KEY (ID_Pedido) REFERENCES Pedido(ID_Pedido)
-);
-
-CREATE TABLE Ingrediente (
-    ID_Ingrediente INT PRIMARY KEY,
-    Nombre VARCHAR(10) NOT NULL,
-    Cantidad_Almacenada DECIMAL(10, 2) NOT NULL
-);
-
-CREATE TABLE Tiene (
-    ID_Plato INT,
-    ID_Ingrediente INT,
-    Cantidad DECIMAL(10, 2) NOT NULL,
-    PRIMARY KEY (ID_Plato, ID_Ingrediente),
-    FOREIGN KEY (ID_Plato) REFERENCES Plato(ID_Plato),
-    FOREIGN KEY (ID_Ingrediente) REFERENCES Ingrediente(ID_Ingrediente)
-);
-
-CREATE TABLE Cocina (
-    DNI_Empleado VARCHAR(9),
-    ID_Plato INT,
-    PRIMARY KEY (DNI_Empleado, ID_Plato),
-    FOREIGN KEY (DNI_Empleado) REFERENCES Empleado(DNI),
-    FOREIGN KEY (ID_Plato) REFERENCES Plato(ID_Plato)
-);
-
-INSERT into Mesa (ID_Mesa, QR, Numero_Comensales, Ubicacion) 
-VALUES ('1', '12345678', '4', 'Terraza');
-
-SELECT * FROM Mesa , 
+INSERT INTO cocina (id_plato, nss) 
+VALUES (1, '217841829');

@@ -1,68 +1,124 @@
-drop database if exists DelightFood;
-create database DelightFood;
-use DelightFood;
-create table empleado (
-    nss char(9) primary key,
-    nombre varchar(20) not null,
-    apellido1 varchar(20) not null,
-    apellido2 varchar(20) not null,
-    dni char(9) not null unique
+
+DROP DATABASE IF EXISTS DelightFood;
+CREATE DATABASE DelightFood;
+USE DelightFood;
+
+CREATE TABLE empleado (
+    nss CHAR(9) PRIMARY KEY,
+    nombre VARCHAR(20) NOT NULL,
+    apellido1 VARCHAR(20) NOT NULL,
+    apellido2 VARCHAR(20) NOT NULL,
+    dni CHAR(9) NOT NULL UNIQUE
 );
-create table camarero (
-	nss char(9) primary key,
-    foreign key (nss) references empleado
+
+
+INSERT INTO empleado (nss, nombre, apellido1, apellido2, dni) VALUES
+('781256721', 'Manolo', 'Castillo', 'Cosio', '62147895B'),
+('621804593', 'Juan', 'Pérez', 'García', '78945612C'),
+('531068791', 'Ana', 'López', 'Martínez', '45678912D'),
+('217841829', 'Pedro', 'Sánchez', 'Rodríguez', '32165498E');
+
+
+CREATE TABLE camarero (
+    nss CHAR(9) PRIMARY KEY,
+    FOREIGN KEY (nss) REFERENCES empleado(nss)
 );
-create table cocinero (
-    nss char(9) primary key,
-    foreign key (nss) references empleado
+
+
+INSERT INTO camarero (nss) VALUES ('781256721'), ('531068791');
+
+
+CREATE TABLE cocinero (
+    nss CHAR(9) PRIMARY KEY,
+    FOREIGN KEY (nss) REFERENCES empleado(nss)
 );
-create table pinche (
-    nss char(9) ,
-    cocinero char(9) ,
-    primary key (nss, cocinero) ,
-    foreign key (nss) references empleado,
-    foreign key (cocinero) references cocinero
+
+
+INSERT INTO cocinero (nss) VALUES ('621804593'), ('217841829');
+
+
+CREATE TABLE pinche (
+    nss CHAR(9),
+    cocinero CHAR(9),
+    PRIMARY KEY (nss, cocinero),
+    FOREIGN KEY (nss) REFERENCES empleado(nss),
+    FOREIGN KEY (cocinero) REFERENCES cocinero(nss)
 );
-create table mesa (
-    id_mesa int primary key auto_increment,
-    qr char(30) not null,
-    n_comensales int not null,
-    ubicacion varchar (30) not null,
-	nss char(9) not null,
-    foreign key(nss) references camarero
+
+
+INSERT INTO pinche (nss, cocinero) VALUES ('781256721', '621804593');
+
+
+CREATE TABLE mesa (
+    id_mesa INT PRIMARY KEY AUTO_INCREMENT,
+    qr CHAR(30) NOT NULL,
+    n_comensales INT NOT NULL,
+    ubicacion VARCHAR(30) NOT NULL,
+    nss CHAR(9) NOT NULL,
+    FOREIGN KEY(nss) REFERENCES camarero(nss)
 );
-create table pedido(
-    id_pedido int primary key auto_increment,
-    precio_total double not null,
-    fecha_pedido date not null,
-    id_mesa int not null,
-    foreign key (id_mesa) references mesa
+
+
+INSERT INTO mesa (qr, n_comensales, ubicacion, nss) 
+VALUES ('56721952162', 3, 'Terraza', '531068791');
+
+CREATE TABLE pedido (
+    id_pedido INT PRIMARY KEY AUTO_INCREMENT,
+    precio_total DOUBLE NOT NULL,
+    fecha_pedido DATE NOT NULL,
+    id_mesa INT NOT NULL,
+    FOREIGN KEY (id_mesa) REFERENCES mesa(id_mesa)
 );
-create table plato (
-    id_plato int primary key auto_increment,
-    nombre varchar(20) not null,
-    tiempo_espera datetime not null,
-    precio double not null,
-    categoria varchar(20),
-    id_pedido int not null,
-    foreign key (id_pedido) references pedido
+
+
+INSERT INTO pedido (precio_total, fecha_pedido, id_mesa) 
+VALUES (20.00, '2025-01-10', 1);
+
+
+CREATE TABLE plato (
+    id_plato INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(20) NOT NULL,
+    tiempo_espera INT NOT NULL,
+    precio DOUBLE NOT NULL,
+    categoria VARCHAR(20),
+    id_pedido INT NOT NULL,
+    FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
 );
-create table ingrediente(
-    id_ingrediente int primary key auto_increment,
-    nombre varchar(20) not null,
-    cantidad_almacenada int not null
+
+INSERT INTO plato (nombre, tiempo_espera, precio, categoria, id_pedido) 
+VALUES ('Sushi', 30, 20.00, 'Nigiri', 1);
+
+
+CREATE TABLE ingrediente (
+    id_ingrediente INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(20) NOT NULL,
+    cantidad_almacenada INT NOT NULL
 );
-create table tiene (
-    id_ingrediente int,
-    id_plato int,
-    primary key (id_ingrediente, id_plato),
-    foreign key (id_plato) references plato,
-    foreign key (id_ingrediente) references ingrediente
+
+
+INSERT INTO ingrediente (nombre, cantidad_almacenada) 
+VALUES ('Salmón', 3), ('Arroz', 10);
+
+
+CREATE TABLE tiene (
+    id_ingrediente INT,
+    id_plato INT,
+    PRIMARY KEY (id_ingrediente, id_plato),
+    FOREIGN KEY (id_plato) REFERENCES plato(id_plato),
+    FOREIGN KEY (id_ingrediente) REFERENCES ingrediente(id_ingrediente)
 );
-create table cocina (
-     id_plato int,
-     nss char(9),
-     primary key (id_plato, nss),
-     foreign key (id_plato) references plato,
-     foreign key (nss) references cocinero
+
+
+INSERT INTO tiene (id_ingrediente, id_plato) 
+VALUES (1, 1), (2, 1);
+
+CREATE TABLE cocina (
+     id_plato INT,
+     nss CHAR(9),
+     PRIMARY KEY (id_plato, nss),
+     FOREIGN KEY (id_plato) REFERENCES plato(id_plato),
+     FOREIGN KEY (nss) REFERENCES cocinero(nss)
 );
+
+INSERT INTO cocina (id_plato, nss) 
+VALUES (1, '217841829');

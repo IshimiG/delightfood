@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DelightFood</title>
+    <link rel="stylesheet" href="../CSS/delightfoodv2.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <img id="header-imgFondo" src="../IMG/IMGfondo.png" alt="Imagen Fondo">
+        <img class="logo" id="header-logo" src="../IMG/logo.png" alt="Logo">
+        <nav id="menu">
+            <ul>
+                <li><a href="#">INICIO</a></li>
+                <li><a href="#">MENU</a></li>
+                <li><a href="#">RESERVAR</a></li>
+            </ul>
+        </nav>
+        <h1 id="header-title">DELIGHT</h1>
+        <button class="button" id="header-button">Menu</button>
+    </header>
+    <main>
+        <section id="aboutUs">
+            <div>
+                <img src="Maps" alt="">
+                <div>
+                    <h2 id="aboutUs-h2">Sobre Nosotros</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac libero ac lectus laoreet consectetur vel ac massa. Nullam vel ipsum eget est tristique elementum. Aliquam erat volutpat. Vestibulum sagittis velit non tellus ornare, vel eleifend mauris viverra.</p>
+                    <button class="button">Reservar</button>
+                </div>
+            </div>
+        </section>
+        <section id="nuestrosPlatos">
+            <h2 id="nuestrosPlatos-h2">Nuestros Platos</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac libero ac lectus laoreet consectetur vel ac massa. Nullam vel ipsum eget est tristique elementum. Aliquam erat volutpat. Vestibulum sagittis velit non tellus ornare, vel eleifend mauris viverra.</p>
+            <div class="nuestrosplatos-galery">
+                <img src="../IMG/" alt="">
+                <img src="../IMG/" alt="">
+                <img src="../IMG/" alt="">
+                <img src="../IMG/" alt="">
+                <img src="../IMG/" alt="">
+            </div>
+            <button class="button">Menu</button> 
+        </section>
+        <section id="reservas">
+            <h2 id="reservas-h2">Reservas</h2>
+            <div>
+                <form id="reservas-form">
+                    <input type="date" id="reservas-date" name="reservas-date">
+                    <label for="reservas-personas">Personas</label>
+                    <select name="reservas-personas" id="reservas-personas">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <label for="reservas-time">Hora</label>
+                    <input type="time" id="reservas-time" name="reservas-time">
+                    <label for="reservas-alergias">Alergias</label>
+                    <input type="text" name="reservas-alergias" id="reservas-alergias">
+                    <input class="button" id="reservas-button" type="submit" value="Reservar">
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <img src="../IMG/logo" alt="Logo">
+        <div class="footer-contacto">
+            <p class="footer-label">Email:</p>
+            <p>soporte@delightfood.com</p>
+            <p class="footer-label">Teléfono:</p>
+            <p>987654321</p>
+            <p class="footer-label">Redes Sociales:</p>
+            <ul>
+                <li><a href="#"><img src="../IMG/facebook" alt="Facebook"></a></li>
+                <li><a href="#"><img src="../IMG/twitter" alt="Twitter"></a></li>
+                <li><a href="#"><img src="../IMG/instagram" alt="Instagram"></a></li>
+            </ul>
+        </div>
+        <div class="footer-horarios">
+            <p class="footer-label">Lunes - Jueves</p>
+            <p>12:00 - 15:00 / 20:00 - 22:00</p> 
+            <p class="footer-label">Viernes - Sábado</p>
+            <p>13:00 - 15:00 / 21:00 - 00:00</p>   
+        </div>
+        <div class="footer-politicas">
+            <ul>
+                <li><a href="#">Política de Privacidad</a></li>
+                <li><a href="#">Términos y Condiciones</a></li>
+                <li><a href="#">Política de Cookies</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

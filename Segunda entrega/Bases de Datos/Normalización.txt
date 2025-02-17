@@ -1,0 +1,24 @@
+
+
+Mesa = id_mesa + token + n_comensales + ubicacion
+	CP(id_mesa)
+
+Reserva = id_reserva + num_comensales + notas + fecha + id_mesa
+	CP(id_reserva)
+	C.Aj: id_mesa -> Mesa(id_mesa)
+
+Pedido = id_pedido + precio_total + fecha_pedido + id_mesa + entregado
+	CP(id_pedido)
+	C.Aj: id_mesa -> Mesa(id_mesa)
+
+Item_pedido = id_item_pedido + precio_total + fecha_pedido
+	CP(id_pedido)
+	C.Aj: id_pedido -> Pedido(id_pedido)
+
+Plato = id_plato + nombre + tiempo_espera + precio + categoria + id_item_pedido
+	CP(id_plato)
+	C.Aj: id_item_pedido -> Item_pedido(id_item_pedido)
+
+1 FN. Sí porque no hay atributos compuestos ni multievaluados
+2 FN. Sí porque no hay atributos no clave que no dependan de forma completa de la CP
+3 FN. Sí porque no hay ninguna dependencia funcional (ningún atributo no clave depende de otro atributo no clave)

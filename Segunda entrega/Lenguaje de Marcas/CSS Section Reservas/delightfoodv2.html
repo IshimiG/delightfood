@@ -49,23 +49,29 @@
             <div>
                 <form id="reservas-form">
                     <input type="date" id="reservas-date" name="reservas-date">
-                    <label for="reservas-personas">Personas</label>
-                    <select name="reservas-personas" id="reservas-personas">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    <label for="reservas-time">Hora</label>
-                    <input type="time" id="reservas-time" name="reservas-time">
-                    <label for="reservas-alergias">Alergias</label>
-                    <input type="text" name="reservas-alergias" id="reservas-alergias">
+                    <div id="reservas-personas">
+                        <label for="reservas-personas">Personas</label>
+                        <select name="reservas-personas">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div id="reservas-time">
+                        <label for="reservas-time">Hora</label>
+                        <input type="time" name="reservas-time">
+                    </div>
+                    <div id="reservas-alergias">
+                        <label for="reservas-alergias">Alergias</label>
+                        <input type="text" name="reservas-alergias">
+                    </div>
                     <input class="button" id="reservas-button" type="submit" value="Reservar">
                 </form>
             </div>

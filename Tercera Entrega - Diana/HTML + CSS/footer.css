@@ -1,0 +1,59 @@
+footer {
+  background-color: #648d35;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+footer img {
+  width: 60px;
+  height: auto;
+  margin-right: 25px;
+  margin-top: 50px;
+}
+
+.footer-contacto,
+.footer-horarios,
+.footer-politicas {
+  flex: 1;
+  padding: 10px;
+}
+
+.footer-h2 {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+  position: relative;
+  border-bottom: 2px solid white;
+  padding-bottom: 5px;
+}
+
+.footer-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.footer-politicas {
+  margin-right: 50px;
+}
+
+.footer-contacto p,
+.footer-horarios p,
+.footer-politicas ul {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.footer-politicas ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-politicas ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}

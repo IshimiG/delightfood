@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS delightfood;
+
+USE delightfood;
+
+CREATE TABLE IF NOT EXISTS mesa (
+id_mesa INT AUTO_INCREMENT PRIMARY KEY,
+token VARCHAR(50) NOT NULL,
+nº_comensales INT NOT NULL,
+ubicación VARCHAR(50) NOT NULL
+);

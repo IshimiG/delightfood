@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DelightFood</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../CSS/delightfoodv2.css">
     <link rel="stylesheet" href="main.css">
 </head>
@@ -15,9 +21,15 @@
 
         <nav>
             <ul>
-                <li><a href="">INICIO</a></li>
-                <li><a href="">MENU</a></li>
-                <li><a href="">RESERVAR</a></li>
+                <li><a href="">
+                        <h2>INICIO</h2>
+                    </a></li>
+                <li><a href="">
+                        <h2>MENU</h2>
+                    </a></li>
+                <li><a href="">
+                        <h2>RESERVAR</h2>
+                    </a></li>
             </ul>
         </nav>
 
@@ -30,32 +42,31 @@
         </section>
 
         <section id="aboutUs">
-            <div class="aboutUs-content">
-                <div class="aboutUs-image">
+            <div id="aboutUs-content">
+                <h2 id="aboutUs-h2-2">¿Dónde estamos?</h2>
+                <div id="aboutUs-image">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d633.8595385246554!2d-0.3258560101483924!3d39.472085160203314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1739911246831!5m2!1ses!2ses"
                         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                <div class="aboutUs-text">
+                <div id="aboutUs-text">
                     <h2 id="aboutUs-h2">¿Dónde estamos?</h2>
-                    <div class="outline-parr">
-                        <p class="parr first">En DelightFood, llevamos la esencia de la gastronomía japonesa a otro
+                    <div id="aboutUs-paragraph">
+                        <p class="first">En DelightFood, llevamos la esencia de la gastronomía japonesa a otro
                             nivel
                             con un buffet que
                             deleita todos los sentidos. Nos apasiona ofrecer una experiencia culinaria auténtica, donde
                             la
                             tradición y la innovación se fusionan en cada bocado.</p>
-                        <p class="parr second">En DelightFood, llevamos la esencia de la gastronomía japonesa a otro
+                        <p class="second">En DelightFood, llevamos la esencia de la gastronomía japonesa a otro
                             nivel
                             con un buffet que
                             deleita todos los sentidos. Nos apasiona ofrecer una experiencia culinaria auténtica, donde
                             la
                             tradición y la innovación se fusionan en cada bocado.</p>
                     </div>
-                    <div class="outline-button">
-                        <button class="button">Reservar</button>
-                    </div>
+                    <button class="main-button aboutUs">Reservar</button>
                 </div>
             </div>
         </section>
@@ -63,7 +74,8 @@
         <section id="nuestrosPlatos">
             <div id="nuestrosPlatos-div">
                 <h2 id="nuestrosPlatos-div-h2">Nuestros Platos</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac libero ac lectus laoreet consectetur
+                <p id="nuestrosPlatos-parr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac libero ac
+                    lectus laoreet consectetur
                     vel ac massa. Nullam vel ipsum eget est tristique elementum. Aliquam erat volutpat. Vestibulum
                     sagittis velit non tellus ornare, vel eleifend mauris viverra.</p>
                 <div id="nuestrosPlatos-div-galery">
@@ -80,41 +92,39 @@
                         <img src="./IMG/sushi2.png" alt="">
                     </div>
                 </div>
-                <button class="button">Menu</button>
+                <button class="main-button">Menu</button>
             </div>
         </section>
 
         <section id="reservas">
             <h2 id="reservas-h2">Reservas</h2>
-            <div>
-                <form id="reservas-form">
-                    <input type="date" id="reservas-date" name="reservas-date">
-                    <div id="reservas-personas">
-                        <label for="reservas-personas">Personas</label>
-                        <select name="reservas-personas">
-                            <option value="1">1 Persona</option>
-                            <option value="2">2 Personas</option>
-                            <option value="3">3 Personas</option>
-                            <option value="4">4 Personas</option>
-                            <option value="5">5 Personas</option>
-                            <option value="6">6 Personas</option>
-                            <option value="7">7 Personas</option>
-                            <option value="8">8 Personas</option>
-                            <option value="9">9 Personas</option>
-                            <option value="10">10 Personas</option>
-                        </select>
-                    </div>
-                    <div id="reservas-time">
-                        <label for="reservas-time">Hora</label>
-                        <input type="time" name="reservas-time">
-                    </div>
-                    <div id="reservas-alergias">
-                        <label for="reservas-alergias">Notas</label>
-                        <textarea name="reservas-alergias"></textarea>
-                    </div>
-                    <input class="button" id="reservas-button" type="submit" value="Reservar">
-                </form>
-            </div>
+            <form id="reservas-form">
+                <input type="date" id="reservas-date" name="reservas-date">
+                <div id="reservas-personas">
+                    <label for="reservas-personas">Personas</label>
+                    <select name="reservas-personas">
+                        <option value="1">1 Persona</option>
+                        <option value="2">2 Personas</option>
+                        <option value="3">3 Personas</option>
+                        <option value="4">4 Personas</option>
+                        <option value="5">5 Personas</option>
+                        <option value="6">6 Personas</option>
+                        <option value="7">7 Personas</option>
+                        <option value="8">8 Personas</option>
+                        <option value="9">9 Personas</option>
+                        <option value="10">10 Personas</option>
+                    </select>
+                </div>
+                <div id="reservas-time">
+                    <label for="reservas-time">Hora</label>
+                    <input type="time" name="reservas-time">
+                </div>
+                <div id="reservas-alergias">
+                    <label for="reservas-alergias">Notas</label>
+                    <textarea name="reservas-alergias"></textarea>
+                </div>
+                <input class="main-button" id="reservas-button" type="submit" value="Reservar">
+            </form>
         </section>
     </main>
     <footer>

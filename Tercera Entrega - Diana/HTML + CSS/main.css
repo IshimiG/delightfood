@@ -13,17 +13,27 @@ footer {
     width: 100vw;
 }
 
+h2 {
+    font-family: "Arvo", serif !important;
+}
+
+p,
+button {
+    font-family: "Montserrat", serif !important;
+}
+
 /* Header */
 
 header {
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 2fr 1fr;
-    background-color: rgba(0, 0, 0, 0.699);
+    background-color: rgba(0, 0, 0, 0.8);
     position: fixed;
     top: 0;
     width: 100vw;
     z-index: 2;
+    padding-block: 20px;
 }
 
 header img {
@@ -31,6 +41,35 @@ header img {
     height: auto;
     object-fit: cover;
     margin-left: 50px;
+    transition: transform ease .5s, scale ease .5s;
+    cursor: pointer;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+header img:hover {
+    scale: 1.1;
+    animation: shake .5s;
 }
 
 header nav ul {
@@ -43,19 +82,19 @@ header nav ul {
 
 header nav ul li a {
     position: relative;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     color: white;
-    font-size: 30px;
     text-decoration: none;
     font-weight: bold;
-
     transition: all ease .5s;
 }
 
+header nav ul li h2 {
+    font-size: 30px;
+    margin: 0;
+}
 
 
 header nav ul li a:hover {
@@ -200,7 +239,7 @@ footer img {
     margin-top: -5px;
 }
 
-.aboutUs-content {
+#aboutUs-content {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -210,23 +249,44 @@ footer img {
     /* max-width: 800px; */
     margin-block: 50px;
     padding-right: 20px;
+    box-sizing: border-box;
+    padding-block: 25px;
 }
 
-.aboutUs-image iframe {
+#aboutUs-image {
+    text-align: center;
+}
+
+#aboutUs-image iframe {
     border-radius: 20px;
-    width: 400px;
-    height: 500px;
+    width: 90%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-
-.aboutUs-text {
+#aboutUs-text {
     max-width: 450px;
-    height: 500px;
     padding-inline: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.main-button.aboutUs {
+    width: 50%;
 }
 
 #aboutUs-h2 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+#aboutUs-h2-2 {
+    display: none;
     text-align: center;
     font-size: 50px;
     font-weight: bold;
@@ -235,33 +295,25 @@ footer img {
     margin-top: 25px;
 }
 
-.aboutUs-text p {
+#aboutUs-text p {
     font-size: 14px;
     line-height: 1.5;
     color: #cccccc;
-    margin-bottom: 15px;
+    margin-bottom: 0;
 }
 
-.parr.first {
+#aboutUs-paragraph .first {
     padding-top: 15px;
     border-top: 2px solid #a10000;
+    margin-top: 0;
 }
 
-.parr.second {
+#aboutUs-paragraph .second {
     padding-bottom: 15px;
     border-bottom: 2px solid #a10000;
 }
 
-.outline-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 125px;
-    text-align: center;
-}
-
-.button {
+.main-button {
     background: #ffcc00;
     color: black;
     padding: 15px 20px;
@@ -277,7 +329,7 @@ footer img {
 
 }
 
-.button:hover {
+.main-button:hover {
     background: #e6b800;
 }
 
@@ -515,4 +567,160 @@ footer img {
     border-bottom: 3px solid black;
     outline: none;
     border-radius: 12px;
+}
+
+/* SMARTPHONE */
+@media (max-width: 600px) {
+    /* Nuestros platos RESPONSIVE */
+
+    #nuestrosPlatos-parr {
+        display: none;
+    }
+
+    #nuestrosPlatos-div-h2 {
+        border-bottom: 2px solid;
+        margin-bottom: 20px;
+    }
+
+    #nuestrosPlatos-div-galery {
+        padding: 10px;
+        box-sizing: border-box;
+        height: 300px;
+    }
+
+    @keyframes nuestrosPlatos-galery-slider-vertical {
+        0% {
+            transform: translateY(0%);
+        }
+
+        20% {
+            transform: translateY(0%);
+        }
+
+        25% {
+            transform: translateY(-25%);
+        }
+
+        45% {
+            transform: translateY(-25%);
+        }
+
+        50% {
+            transform: translateY(-50%);
+        }
+
+        70% {
+            transform: translateY(-50%);
+        }
+
+        100% {
+            transform: translateY(0%);
+        }
+    }
+
+    #nuestrosPlatos-div-galery-inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        animation: none;
+        padding: 0;
+        animation: nuestrosPlatos-galery-slider-vertical 10s infinite;
+    }
+
+    #nuestrosPlatos-div-galery-inner img {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Reservas RESPONSIVE */
+
+    #reservas-form {
+        display: flex;
+        flex-direction: column;
+        max-width: 85%;
+    }
+
+    #reservas-date {
+        height: 300px;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    footer img {
+        grid-column: span 2;
+        margin-top: 10px;
+    }
+
+    /* Donde estamos RESPONSIVE */
+
+    #aboutUs-content {
+        flex-direction: column;
+        padding-right: 0;
+        width: 80%;
+        padding-block: 0;
+    }
+
+    #aboutUs-h2 {
+        display: none;
+    }
+
+    #aboutUs-h2-2 {
+        display: block;
+        border-bottom: 2px solid;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 30px !important;
+    }
+
+    #aboutUs-paragraph {
+        display: flex;
+        justify-content: center;
+    }
+
+    #aboutUs-paragraph p {
+        width: 90%;
+    }
+
+    #aboutUs-paragraph .first {
+        border: none;
+        text-align: center;
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    #aboutUs-paragraph .second {
+        display: none;
+    }
+
+    #aboutUs-text {
+        padding-bottom: 18px;
+    }
+
+    .main-button.aboutUs {
+        margin-bottom: 15px;
+    }
+
+    header {
+        background-color: transparent;
+    }
+
+    header img {
+        background-color: #e0dfdc;
+        padding: 15px;
+        border-radius: 9999px;
+        margin-left: 15px;
+    }
+
+    header nav {
+        display: none;
+    }
+
+    #aboutUs-image iframe {
+        height: 75%;
+    }
 }

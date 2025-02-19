@@ -12,3 +12,507 @@ section {
 footer {
     width: 100vw;
 }
+
+/* Header */
+
+header {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 2fr 1fr;
+    background-color: rgba(0, 0, 0, 0.699);
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 2;
+}
+
+header img {
+    width: 50px;
+    height: auto;
+    object-fit: cover;
+    margin-left: 50px;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    list-style: none;
+    padding-block: 10px;
+}
+
+header nav ul li a {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: all ease .5s;
+}
+
+
+
+header nav ul li a:hover {
+    color: #ab2f2d;
+}
+
+header nav ul li a:hover::after {
+    width: 110%;
+}
+
+header nav ul li a:hover::before {
+    opacity: 1;
+}
+
+header nav ul li a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    border-radius: 5px;
+    background-color: #ab2f2d;
+    position: absolute;
+    bottom: 0;
+    transition: all ease .5s;
+}
+
+header nav ul li a::before {
+    opacity: 0;
+    content: "";
+    bottom: -35px;
+    width: 50px;
+    height: 30px;
+    position: absolute;
+    background-image: url("./IMG/hover-header.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(180deg);
+    transition: all ease .5s;
+}
+
+/* Footer */
+
+footer {
+    background-color: #648d35;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+footer img {
+    width: 60px;
+    height: auto;
+    margin-right: 25px;
+    margin-top: 50px;
+}
+
+.footer-contacto,
+.footer-horarios,
+.footer-politicas {
+    flex: 1;
+    padding: 10px;
+}
+
+.footer-h2 {
+    font-size: 20px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    position: relative;
+    border-bottom: 2px solid white;
+    padding-bottom: 5px;
+}
+
+.footer-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.footer-politicas {
+    margin-right: 50px;
+}
+
+.footer-contacto p,
+.footer-horarios p,
+.footer-politicas ul {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.footer-politicas ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-politicas ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Página principal */
+
+#first-page {
+    text-align: center;
+}
+
+#first-page img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+#first-page button {
+    background-color: #f3b42b;
+    font-weight: bold;
+    font-size: 24px;
+    border-radius: 30px;
+    padding-inline: 50px;
+    padding-block: 15px;
+    border: none;
+    z-index: 1;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 80%;
+}
+
+/* Donde Estamos */
+
+#aboutUs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 20px;
+    background-image: url(./IMG/NubeOscura.png);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    background-color: black;
+    margin-top: -5px;
+}
+
+.aboutUs-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #272b34;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    /* max-width: 800px; */
+    margin-block: 50px;
+    padding-right: 20px;
+}
+
+.aboutUs-image iframe {
+    border-radius: 20px;
+    width: 400px;
+    height: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+.aboutUs-text {
+    max-width: 450px;
+    height: 500px;
+    padding-inline: 20px;
+}
+
+#aboutUs-h2 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 40px;
+    margin-top: 25px;
+}
+
+.aboutUs-text p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #cccccc;
+    margin-bottom: 15px;
+}
+
+.parr.first {
+    padding-top: 15px;
+    border-top: 2px solid #a10000;
+}
+
+.parr.second {
+    padding-bottom: 15px;
+    border-bottom: 2px solid #a10000;
+}
+
+.outline-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 125px;
+    text-align: center;
+}
+
+.button {
+    background: #ffcc00;
+    color: black;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    border-radius: 40px;
+
+}
+
+.button:hover {
+    background: #e6b800;
+}
+
+/* Nuestros platos */
+
+#nuestrosPlatos {
+    background-color: #ffffff;
+    background-image: url(./IMG/fondo_patron_gris.png);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#nuestrosPlatos-div {
+    width: 70%;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#nuestrosPlatos-div-h2 {
+    color: #ab2f2d;
+    font-size: 50px;
+    margin-block: 10px;
+}
+
+#nuestrosPlatos-div p {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+
+#nuestrosPlatos-div-galery {
+    background-color: #272b34;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+#nuestrosPlatos-div-galery {
+    background-color: #272b34;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+#nuestrosPlatos-div-galery-inner {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    animation: nuestrosPlatos-galery-slider 10s infinite linear;
+}
+
+#nuestrosPlatos-div-galery img {
+    width: 25%;
+    flex-shrink: 0;
+    transition: transform 0.2s ease-in-out;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+@keyframes nuestrosPlatos-galery-slider {
+    0% {
+        transform: translateX(0%);
+    }
+
+    20% {
+        transform: translateX(0%);
+    }
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    45% {
+        transform: translateX(-25%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    70% {
+        transform: translateX(-50%);
+    }
+
+    75% {
+        transform: translateX(-75%);
+    }
+
+    95% {
+        transform: translateX(-75%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+#nuestrosPlatos-div-galery img:hover {
+    transform: scale(1.1);
+}
+
+/* CSS Section Reservas */
+
+#reservas {
+    background-color: #2a303d;
+    color: white;
+    text-align: center;
+    background-image: url(./IMG/expecto-patronum.png);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#reservas-h2 {
+    padding-top: 0.5em;
+    font-size: 50px;
+    text-decoration: underline white;
+}
+
+#reservas-form {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto auto auto;
+    gap: 20px;
+    background-color: #2a303d;
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 20px;
+    max-width: 950px;
+}
+
+#reservas-date {
+    grid-column: 1 / 2;
+    grid-row: 1 / 5;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#reservas-personas {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+#reservas-personas label {
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: flex-start;
+}
+
+#reservas-personas select {
+    height: 35px;
+    border-bottom: 3px solid black;
+    outline: none;
+    width: 100%;
+    height: 40px;
+    border-radius: 12px;
+}
+
+#reservas-time input {
+    height: 35px;
+    border: none;
+    border-bottom: 3px solid black;
+    outline: none;
+    width: 100%;
+    height: 40px;
+    border-radius: 12px;
+}
+
+#reservas-time {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+#reservas-time label {
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: flex-start;
+}
+
+#reservas-alergias {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+#reservas-alergias {
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: flex-start;
+}
+
+#reservas-button {
+    grid-row: 4 / 5;
+    grid-column: 2 / 3;
+}
+
+#reservas-alergias textarea {
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    resize: none;
+    outline: none;
+    border-bottom: 3px solid black;
+    outline: none;
+    border-radius: 12px;
+}

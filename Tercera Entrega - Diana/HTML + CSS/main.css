@@ -28,12 +28,17 @@ header {
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 2fr 1fr;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;
     width: 100vw;
     z-index: 2;
     padding-block: 20px;
+    backdrop-filter: blur(10px);
+}
+
+header div {
+    display: none;
 }
 
 header img {
@@ -626,13 +631,29 @@ footer img {
     
         header {
             background-color: transparent;
+            grid-template-columns: repeat(2, 1fr);
+            backdrop-filter: none;
         }
-    
+
+        header div {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+        }
+
         header img {
             background-color: #e0dfdc;
-            padding: 15px;
+            padding: 10px;
             border-radius: 9999px;
             margin-left: 15px;
+            width: 35px;
+        }
+
+        header div img {
+            background-color: #e0dfdc;
+            padding: 10px;
+            border-radius: 9999px;
+            margin-right: 35px;
         }
     
         header nav {
@@ -815,17 +836,32 @@ footer img {
     /* HEADER RESPONSIVE */
     header {
         background-color: transparent;
+        grid-template-columns: repeat(2, 1fr);
+        backdrop-filter: none;
+    }
+
+    header div {
+        display: flex;
+        align-items: center;
+        justify-content: end;
     }
 
     header img {
         background-color: #e0dfdc;
-        padding: 15px;
+        padding: 10px;
         border-radius: 9999px;
         margin-left: 15px;
+        width: 35px;
+    }
+
+    header div img {
+        background-color: #e0dfdc;
+        padding: 10px;
+        border-radius: 9999px;
+        margin-right: 35px;
     }
 
     header nav {
         display: none;
     }
 }
-    
